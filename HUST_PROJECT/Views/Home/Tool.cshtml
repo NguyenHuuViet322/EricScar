@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Chuyển đổi";
+}
+
+<div class="row" style="justify-content: space-around;align-items: flex-start;">
+    <div class="col-md-7 m-1 div" style="padding:1em; border-radius:10px;">
+        <p class="card-test">Lưu ý: File nhận chỉ chứa ảnh của bảng. Theo format của ví dụ:</p>
+        <img src="~/img/eg.jpg" style="display:block;margin:auto;max-height: 600px;width:80%;"/>
+    </div>
+
+    <div class="col-md-4 m-1 div" style="padding:1em; border-radius:10px;">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <label class="form-label" for="postedFile">File ảnh:</label>
+            <input class="form-control" type="file" name="postedFile" id="postedFile" multiple />
+
+            <div class="form-group  d-flex justify-content-end mt-1">
+                <input asp-action="Result" type="submit" value="Chuyển đổi" class="btn btn-primary bg-primary" />
+            </div>
+        </form>
+    </div>
+</div>

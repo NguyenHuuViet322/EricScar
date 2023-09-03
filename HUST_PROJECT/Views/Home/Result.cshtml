@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Info> 
+@{
+    ViewData["Title"] = "Kết quả";
+}
+
+<div class="row" style="justify-content: space-around;align-items: flex-start;">
+    <div class="col-md-7 m-1 div" style="padding:1em; border-radius:10px;">
+        <p class="card-test">Kết quả</p>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Họ tên</th>
+                    <th scope="col">Toán</th>
+                    <th scope="col">Lý</th>
+                    <th scope="col">Hóa</th>
+                    <th scope="col">TB</th>
+                    <th scope="col">Xếp loại</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var stt = 1;
+                    foreach(var info in @Model)
+                    {
+                        <tr>
+                            <th scope="row">@stt</th>
+                            <td>@info.HoTen</td>
+                            <td>@info.Toan</td>
+                            <td>@info.Ly</td>
+                            <td>@info.Hoa</td>
+                            <td>@info.TB</td>
+                            <td>@info.XepLoai</td>
+                        </tr>
+                        stt++;
+                    }
+                    
+                }
+            </tbody>
+        </table>
+        <form asp-action="DownloadFile">
+            <input type="hidden" name="fileName" value="@ViewData["url"]" />
+            <button type="submit" class="btn btn-success" style="float:right;">Tải xuống</button>
+        </form>
+    </div>
+
+    <div class="col-md-4 m-1 div" style="padding:1em; border-radius:10px;">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <label class="form-label" for="postedFile">File ảnh:</label>
+            <input class="form-control" type="file" name="postedFile" id="postedFile" multiple />
+
+            <div class="form-group  d-flex justify-content-end mt-1">
+                <input asp-action="Result" type="submit" value="Chuyển đổi" class="btn btn-primary bg-primary" />
+            </div>
+        </form>
+    </div>
+</div>
